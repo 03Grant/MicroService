@@ -9,5 +9,34 @@
         SELECT * FROM userinfo
         WHERE userid = #{userid} AND password = #{password}
     </select>
+    <select id="selectAddressesByUserId" resultType="com.retech.userService.Model.Address">
+        SELECT * FROM address WHERE userid = #{userId}
+    </select>
+    <insert id="insertAddress">
+        INSERT INTO address (userid, address)
+        VALUES (#{userid}, #{address})
+    </insert>
+    <update id="updateAddCoupons">
+        UPDATE usercoupon
+        SET num = num + #{num}
+        WHERE userid = #{userid} AND couponid = #{couponid}
+    </update>
+    <insert id="insertCoupon">
+        INSERT INTO usercoupon (userid, couponid, num)
+        VALUES (#{userid}, #{couponid}, #{num})
+    </insert>
+    <update id="updateRemoveCoupons">
+        UPDATE usercoupon
+        SET num = num - #{num}
+        WHERE userid = #{userid} AND couponid = #{couponid} AND num >= #{num}
+    </update>
+    <select id="selectCouponCount" resultType="java.lang.Integer">
+        SELECT num FROM usercoupon
+        WHERE userid = #{userid} AND couponid = #{couponid}
+    </select>
+    <select id="selectUserCoupons" resultType="com.retech.userService.Model.UserCoupon">
+        SELECT * FROM usercoupon WHERE userid = #{userid}
+    </select>
+
 
 </mapper>
