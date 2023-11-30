@@ -1,5 +1,6 @@
 package com.retech.commodityService.Service;
 
+import com.retech.commodityService.DTO.CommodityInfo;
 import com.retech.commodityService.Model.Commodity;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public interface CommodityService {
     List<Commodity> getCommodityList();
 
     // 根据商品ID获取商品信息
-    Commodity getCommodityById(String commodityId);
+    CommodityInfo getCommodityById(String commodityId);
 
     // 添加新商品
     boolean addCommodity(Commodity commodity);
