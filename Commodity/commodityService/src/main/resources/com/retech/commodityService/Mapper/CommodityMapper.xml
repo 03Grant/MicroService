@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.retech.commodityService.Mapping.CommodityMapping">
+
+    <!-- 查询所有商品 -->
+    <select id="findAllCommodities" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity
+    </select>
+
+    <!-- 根据商品ID查询商品 -->
+    <select id="findCommodityById" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity WHERE commodityid = #{commodityId}
+    </select>
+
+    <!-- 插入商品 -->
+    <insert id="insertCommodity">
+        INSERT INTO commodity (commodityid, commodityname, brand, price, stock)
+        VALUES (#{commodityId}, #{commodityName}, #{brand}, #{price}, #{stock})
+    </insert>
+
+    <!-- 更新商品信息 -->
+    <update id="updateCommodity">
+        UPDATE commodity
+        SET commodityname = #{commodityName}, brand = #{brand}, price = #{price}, stock = #{stock}
+        WHERE commodityid = #{commodityId}
+    </update>
+
+    <!-- 删除商品 -->
+    <delete id="deleteCommodity">
+        DELETE FROM commodity WHERE commodityid = #{commodityId}
+    </delete>
+</mapper>

@@ -3,8 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.retech.couponService.Mapper.CouponMapper">
-    <!--配置查询所有-->
-    <!--id为方法名称-->
     <insert id="insertCoupon" parameterType="com.retech.couponService.Model.Coupon">
         INSERT INTO coupons (couponid, couponname, ...)
         VALUES (#{couponid}, #{couponname}, ...)
