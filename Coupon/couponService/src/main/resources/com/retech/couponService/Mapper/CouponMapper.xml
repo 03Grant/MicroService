@@ -23,12 +23,12 @@
 
     <select id="findActiveCoupons" resultType="com.retech.couponService.Model.Coupon">
         SELECT * FROM coupons
-        WHERE timebegin <= NOW() AND timeend >= NOW()
+        WHERE timebegin &lt; NOW() AND timeend >= NOW()
     </select>
 
     <select id="findExpiredCoupons" resultType="com.retech.couponService.Model.Coupon">
         SELECT * FROM coupons
-        WHERE timeend < NOW()
+        WHERE timeend &lt; NOW()
     </select>
 
     <select id="findNotYetActiveCoupons" resultType="com.retech.couponService.Model.Coupon">

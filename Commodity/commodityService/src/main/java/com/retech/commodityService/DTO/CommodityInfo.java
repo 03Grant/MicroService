@@ -1,11 +1,27 @@
+// CommodityInfo.java
+
 package com.retech.commodityService.DTO;
 
 public class CommodityInfo {
     private String commodityId;
     private String commodityName;
     private String brand;
-    private double price;
-    private int stock;
+    private double minPrice;
+    private double maxPrice;
+
+    // 构造函数、getter 和 setter 方法
+
+    public CommodityInfo() {
+        // 默认构造函数
+    }
+
+    public CommodityInfo(String commodityId, String commodityName, String brand, double minPrice, double maxPrice) {
+        this.commodityId = commodityId;
+        this.commodityName = commodityName;
+        this.brand = brand;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+    }
 
     public String getCommodityId() {
         return commodityId;
@@ -31,19 +47,19 @@ public class CommodityInfo {
         this.brand = brand;
     }
 
-    public double getPrice() {
-        return price;
+    public double getMinPrice() {
+        return minPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setMinPrice(double minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public int getStock() {
-        return stock;
+    public double getMaxPrice() {
+        return maxPrice;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setMaxPrice(double maxPrice) {
+        this.maxPrice = maxPrice;
     }
 }

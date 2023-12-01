@@ -1,7 +1,8 @@
 package com.retech.commodityService.Service;
 
-import com.retech.commodityService.DTO.CommodityInfo;
+import com.retech.commodityService.DTO.CommodityDetails;
 import com.retech.commodityService.Model.Commodity;
+import com.retech.commodityService.DTO.CommodityInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,10 +11,15 @@ import java.util.List;
 public interface CommodityService {
 
     // 获取商品列表
-    List<Commodity> getCommodityList();
+    List<CommodityInfo> getCommodityList();
+    CommodityDetails getCommodityDetails(String commodityId);
+
+    List<CommodityInfo> searchCommodities(CommodityDetails searchCriteria);
+
 
     // 根据商品ID获取商品信息
-    CommodityInfo getCommodityById(String commodityId);
+    Commodity getCommodityById(String commodityId);
+    double getPriceByCommodityId(String commodityId);
 
     // 添加新商品
     boolean addCommodity(Commodity commodity);
@@ -23,4 +29,7 @@ public interface CommodityService {
 
     // 删除商品
     boolean deleteCommodity(String commodityId);
+
+    // 根据参数搜索商品列表
+
 }

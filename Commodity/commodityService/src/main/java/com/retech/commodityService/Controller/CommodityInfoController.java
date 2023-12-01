@@ -1,13 +1,12 @@
 package com.retech.commodityService.Controller;
 
-import com.retech.commodityService.DTO.CommodityInfo;
+import com.retech.commodityService.DTO.CommodityDetails;
 import com.retech.commodityService.Service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/commodity")
@@ -22,19 +21,16 @@ public class CommodityInfoController {
 
     @GetMapping("/{commodityId}")
     public ResponseEntity<?> getCommodityDetails(@PathVariable String commodityId) {
-        CommodityInfo commodityinfo = commodityService.getCommodityById(commodityId);
+        CommodityDetails commodityDetails = commodityService.getCommodityDetails(commodityId);
 
-        if (commodityinfo != null) {
-            CommodityInfo commodityInfo = new CommodityInfo();
-            commodityInfo.setCommodityId(commodityinfo.getCommodityId());
-            commodityInfo.setCommodityName(commodityinfo.getCommodityName());
-            commodityInfo.setBrand(commodityinfo.getBrand());
-            commodityInfo.setPrice(commodityinfo.getPrice());
-            commodityInfo.setStock(commodityinfo.getStock());
-
-            return ResponseEntity.ok(commodityInfo);
+        if (commodityDetails != null) {
+            // Return CommodityDetails in the response
+            return ResponseEntity.ok(commodityDetails);
         } else {
+            // Commodity not found
             return ResponseEntity.status(404).body("Commodity not found");
         }
     }
+
+
 }

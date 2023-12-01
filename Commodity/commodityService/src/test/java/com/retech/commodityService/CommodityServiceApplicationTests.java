@@ -10,4 +10,31 @@ class CommodityServiceApplicationTests {
 	void contextLoads() {
 	}
 
+    @Test
+    void getCommodityList() {
+    }
+
+    @Test
+    void testGetCommodityList() {
+    }
+
+    @Test
+    void getCommodityById() {
+    }
+
+    @Test
+    void addCommodity() {
+    }
+
+    @Test
+    void updateCommodity() {
+    }
+
+    @Test
+    void deleteCommodity() {
+    }
+
+    @Test
+    void searchCommodities() {
+    }
 }
