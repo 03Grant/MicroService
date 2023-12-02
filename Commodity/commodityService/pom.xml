@@ -9,24 +9,6 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.retech</groupId>
-<<<<<<<< HEAD:Gateway/Gateway/pom.xml
-	<artifactId>Gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Gateway</name>
-	<description>Gateway project for retech</description>
-	<properties>
-		<java.version>17</java.version>
-		<spring-cloud.version>2023.0.0-RC1</spring-cloud.version>
-	</properties>
-	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-web</artifactId>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-========
 	<artifactId>commodityService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>commodityService</name>
@@ -38,7 +20,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
->>>>>>>> 99dbc88021ed90bfd05b3035df6b77dcfd159cd3:Commodity/commodityService/pom.xml
 		</dependency>
 
 		<dependency>
@@ -79,15 +60,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 </project>
