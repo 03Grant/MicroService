@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.retech.commodityService.Mapper.CommodityMapper">
+
+    <!-- 查询所有商品的所有信息 -->
+    <select id="selectAllCommodity" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity
+    </select>
+
+
+    <select id="getAllCommodityInfo" resultType="com.retech.commodityService.DTO.CommodityInfo">
+        SELECT
+        c.commodityid AS commodityId,
+        c.commodityname AS commodityName,
+        c.brand AS brand,
+        MIN(p.price) AS minPrice,
+        MAX(p.price) AS maxPrice
+        FROM
+        commodity c
+        LEFT JOIN price p ON c.commodityid = p.commodityid
+        GROUP BY
+        c.commodityid, c.commodityname, c.brand
+    </select>
+
+
+    <!-- 根据商品 ID 查询商品的所有信息，包括配置和价格 -->
+    <select id="getCommodityDetails" resultMap="com.retech.commodityService.Mapper.CommodityMapper.CommodityDetailsResultMap">
+        SELECT
+        c.commodityid AS commodityId,
+        c.commodityname AS commodityName,
+        c.brand AS brand,
+        conf.configurationid AS configurationId,
+        conf.CPU,
+        conf.GPU,
+        conf.disk,
+        conf.memory,
+        p.price
+        FROM
+        commodity c
+        LEFT JOIN configuration conf ON c.commodityid = conf.commodityid
+        LEFT JOIN price p ON c.commodityid = p.commodityid
+        WHERE
+        c.commodityid = #{commodityId}
+    </select>
+
+    <!-- 根据不同的参数搜索商品 -->
+    <select id="searchCommodities" resultMap="com.retech.commodityService.Mapper.CommodityMapper.CommodityInfoResultMap">
+        SELECT
+        c.commodityid AS commodityId,
+        c.commodityname AS commodityName,
+        c.brand AS brand,
+        MIN(p.price) AS minPrice,
+        MAX(p.price) AS maxPrice
+        FROM
+        commodity c
+        LEFT JOIN configuration conf ON c.commodityid = conf.commodityid
+        LEFT JOIN price p ON c.commodityid = p.commodityid
+        WHERE
+        <!-- 根据用户提供的参数动态构建查询条件 -->
+        <if test="commodityName != null and commodityName != ''">
+            AND c.commodityname = #{commodityName}
+        </if>
+        <if test="brand != null and brand != ''">
+            AND c.brand = #{brand}
+        </if>
+        <if test="price != 0.0">
+            AND p.price = #{price}
+        </if>
+        <!-- 其他参数的条件类似，根据需要添加 -->
+        GROUP BY c.commodityid, c.commodityname, c.brand
+    </select>
+
+    <resultMap id="CommodityInfoResultMap" type="com.retech.commodityService.DTO.CommodityInfo">
+        <id property="commodityId" column="commodityId"/>
+        <result property="commodityName" column="commodityName"/>
+        <result property="brand" column="brand"/>
+        <result property="minPrice" column="minPrice"/>
+        <result property="maxPrice" column="maxPrice"/>
+    </resultMap>
+
+    <!-- 定义 ResultMap 以映射查询结果 -->
+    <resultMap id="CommodityDetailsResultMap" type="com.retech.commodityService.DTO.CommodityDetails">
+        <id property="commodityId" column="commodityId"/>
+        <result property="commodityName" column="commodityName"/>
+        <result property="brand" column="brand"/>
+        <result property="configurationId" column="configurationId"/>
+        <result property="CPU" column="CPU"/>
+        <result property="GPU" column="GPU"/>
+        <result property="disk" column="disk"/>
+        <result property="memory" column="memory"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+
+
+
+
+
+    <!-- 根据商品ID查询商品 -->
+    <select id="findCommodityById" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity WHERE commodityid = #{commodityId}
+    </select>
+    <select id="findCommodityByName" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity WHERE commodityname = #{commodityName}
+    </select>
+    <select id="getPriceByCommodityId" resultType="double">
+        SELECT price FROM price WHERE commodityid = #{commodityId}
+    </select>
+
+    <!-- 插入商品 -->
+    <insert id="insertCommodity">
+        INSERT INTO commodity (commodityid, commodityname, brand, price, stock)
+        VALUES (#{commodityId}, #{commodityName}, #{brand}, #{price}, #{stock})
+    </insert>
+
+    <!-- 更新商品信息 -->
+    <update id="updateCommodity">
+        UPDATE commodity
+        SET commodityname = #{commodityName}, brand = #{brand}, price = #{price}, stock = #{stock}
+        WHERE commodityid = #{commodityId}
+    </update>
+
+    <!-- 删除商品 -->
+    <delete id="deleteCommodity">
+        DELETE FROM commodity WHERE commodityid = #{commodityId}
+    </delete>
+</mapper>
