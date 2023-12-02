@@ -36,8 +36,8 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public CommodityDetails getCommodityDetails(String commodityId) {
-        return commodityMapper.getCommodityDetails(commodityId);
+    public CommodityDetails getCommodityDetails(String commodityid) {
+        return commodityMapper.getCommodityDetails(commodityid);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public Commodity getCommodityById(String commodityId) {
+    public Commodity getCommodityByid(String commodityid) {
         return null;
     }
 
@@ -57,8 +57,8 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public double getPriceByCommodityId(String commodityId){
-        return commodityMapper.getPriceByCommodityId(commodityId);
+    public double getPriceByCommodityid(String commodityid){
+        return commodityMapper.getPriceByCommodityid(commodityid);
     }
     @Override
     public boolean addCommodity(Commodity commodity) {
@@ -73,8 +73,8 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public boolean deleteCommodity(String commodityId) {
-        int rowsAffected = commodityMapper.deleteCommodity(commodityId);
+    public boolean deleteCommodity(String commodityid) {
+        int rowsAffected = commodityMapper.deleteCommodity(commodityid);
         return rowsAffected > 0;
     }
 

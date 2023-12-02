@@ -12,14 +12,14 @@ public interface CommodityService {
 
     // 获取商品列表
     List<CommodityInfo> getCommodityList();
-    CommodityDetails getCommodityDetails(String commodityId);
+    CommodityDetails getCommodityDetails(String commodityid);
 
     List<CommodityInfo> searchCommodities(CommodityDetails searchCriteria);
 
 
     // 根据商品ID获取商品信息
-    Commodity getCommodityById(String commodityId);
-    double getPriceByCommodityId(String commodityId);
+    Commodity getCommodityByid(String commodityid);
+    double getPriceByCommodityid(String commodityid);
 
     // 添加新商品
     boolean addCommodity(Commodity commodity);

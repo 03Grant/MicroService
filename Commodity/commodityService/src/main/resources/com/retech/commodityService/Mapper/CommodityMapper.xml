@@ -12,8 +12,8 @@
 
     <select id="getAllCommodityInfo" resultType="com.retech.commodityService.DTO.CommodityInfo">
         SELECT
-        c.commodityid AS commodityId,
-        c.commodityname AS commodityName,
+        c.commodityid AS commodityid,
+        c.commodityname AS commodityname,
         c.brand AS brand,
         MIN(p.price) AS minPrice,
         MAX(p.price) AS maxPrice
@@ -28,10 +28,10 @@
     <!-- 根据商品 ID 查询商品的所有信息，包括配置和价格 -->
     <select id="getCommodityDetails" resultMap="com.retech.commodityService.Mapper.CommodityMapper.CommodityDetailsResultMap">
         SELECT
-        c.commodityid AS commodityId,
-        c.commodityname AS commodityName,
+        c.commodityid AS commodityid,
+        c.commodityname AS commodityname,
         c.brand AS brand,
-        conf.configurationid AS configurationId,
+        conf.configurationid AS configurationid,
         conf.CPU,
         conf.GPU,
         conf.disk,
@@ -42,14 +42,14 @@
         LEFT JOIN configuration conf ON c.commodityid = conf.commodityid
         LEFT JOIN price p ON c.commodityid = p.commodityid
         WHERE
-        c.commodityid = #{commodityId}
+        c.commodityid = #{commodityid}
     </select>
 
     <!-- 根据不同的参数搜索商品 -->
     <select id="searchCommodities" resultMap="com.retech.commodityService.Mapper.CommodityMapper.CommodityInfoResultMap">
         SELECT
-        c.commodityid AS commodityId,
-        c.commodityname AS commodityName,
+        c.commodityid AS commodityid,
+        c.commodityname AS commodityname,
         c.brand AS brand,
         MIN(p.price) AS minPrice,
         MAX(p.price) AS maxPrice
@@ -59,8 +59,8 @@
         LEFT JOIN price p ON c.commodityid = p.commodityid
         WHERE
         <!-- 根据用户提供的参数动态构建查询条件 -->
-        <if test="commodityName != null and commodityName != ''">
-            AND c.commodityname = #{commodityName}
+        <if test="commodityname != null and commodityname != ''">
+            AND c.commodityname = #{commodityname}
         </if>
         <if test="brand != null and brand != ''">
             AND c.brand = #{brand}
@@ -73,8 +73,8 @@
     </select>
 
     <resultMap id="CommodityInfoResultMap" type="com.retech.commodityService.DTO.CommodityInfo">
-        <id property="commodityId" column="commodityId"/>
-        <result property="commodityName" column="commodityName"/>
+        <id property="commodityid" column="commodityid"/>
+        <result property="commodityname" column="commodityname"/>
         <result property="brand" column="brand"/>
         <result property="minPrice" column="minPrice"/>
         <result property="maxPrice" column="maxPrice"/>
@@ -82,10 +82,10 @@
 
     <!-- 定义 ResultMap 以映射查询结果 -->
     <resultMap id="CommodityDetailsResultMap" type="com.retech.commodityService.DTO.CommodityDetails">
-        <id property="commodityId" column="commodityId"/>
-        <result property="commodityName" column="commodityName"/>
+        <id property="commodityid" column="commodityid"/>
+        <result property="commodityname" column="commodityname"/>
         <result property="brand" column="brand"/>
-        <result property="configurationId" column="configurationId"/>
+        <result property="configurationid" column="configurationid"/>
         <result property="CPU" column="CPU"/>
         <result property="GPU" column="GPU"/>
         <result property="disk" column="disk"/>
@@ -99,31 +99,31 @@
 
 
     <!-- 根据商品ID查询商品 -->
-    <select id="findCommodityById" resultType="com.retech.commodityService.Model.Commodity">
-        SELECT * FROM commodity WHERE commodityid = #{commodityId}
+    <select id="findCommodityByid" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity WHERE commodityid = #{commodityid}
     </select>
-    <select id="findCommodityByName" resultType="com.retech.commodityService.Model.Commodity">
-        SELECT * FROM commodity WHERE commodityname = #{commodityName}
+    <select id="findCommodityByname" resultType="com.retech.commodityService.Model.Commodity">
+        SELECT * FROM commodity WHERE commodityname = #{commodityname}
     </select>
-    <select id="getPriceByCommodityId" resultType="double">
-        SELECT price FROM price WHERE commodityid = #{commodityId}
+    <select id="getPriceByCommodityid" resultType="double">
+        SELECT price FROM price WHERE commodityid = #{commodityid}
     </select>
 
     <!-- 插入商品 -->
     <insert id="insertCommodity">
         INSERT INTO commodity (commodityid, commodityname, brand, price, stock)
-        VALUES (#{commodityId}, #{commodityName}, #{brand}, #{price}, #{stock})
+        VALUES (#{commodityid}, #{commodityname}, #{brand}, #{price}, #{stock})
     </insert>
 
     <!-- 更新商品信息 -->
     <update id="updateCommodity">
         UPDATE commodity
-        SET commodityname = #{commodityName}, brand = #{brand}, price = #{price}, stock = #{stock}
-        WHERE commodityid = #{commodityId}
+        SET commodityname = #{commodityname}, brand = #{brand}, price = #{price}, stock = #{stock}
+        WHERE commodityid = #{commodityid}
     </update>
 
     <!-- 删除商品 -->
     <delete id="deleteCommodity">
-        DELETE FROM commodity WHERE commodityid = #{commodityId}
+        DELETE FROM commodity WHERE commodityid = #{commodityid}
     </delete>
 </mapper>

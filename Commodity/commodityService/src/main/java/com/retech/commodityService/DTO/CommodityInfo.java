@@ -3,8 +3,8 @@
 package com.retech.commodityService.DTO;
 
 public class CommodityInfo {
-    private String commodityId;
-    private String commodityName;
+    private String commodityid;
+    private String commodityname;
     private String brand;
     private double minPrice;
     private double maxPrice;
@@ -15,28 +15,28 @@ public class CommodityInfo {
         // 默认构造函数
     }
 
-    public CommodityInfo(String commodityId, String commodityName, String brand, double minPrice, double maxPrice) {
-        this.commodityId = commodityId;
-        this.commodityName = commodityName;
+    public CommodityInfo(String commodityid, String commodityname, String brand, double minPrice, double maxPrice) {
+        this.commodityid = commodityid;
+        this.commodityname = commodityname;
         this.brand = brand;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }
 
-    public String getCommodityId() {
-        return commodityId;
+    public String getCommodityid() {
+        return commodityid;
     }
 
-    public void setCommodityId(String commodityId) {
-        this.commodityId = commodityId;
+    public void setCommodityid(String commodityid) {
+        this.commodityid = commodityid;
     }
 
-    public String getCommodityName() {
-        return commodityName;
+    public String getCommodityname() {
+        return commodityname;
     }
 
-    public void setCommodityName(String commodityName) {
-        this.commodityName = commodityName;
+    public void setCommodityname(String commodityname) {
+        this.commodityname = commodityname;
     }
 
     public String getBrand() {
