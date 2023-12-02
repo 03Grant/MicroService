@@ -7,6 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,11 +19,11 @@ public class CouponServiceImpl implements CouponService {
     //导入配置文件
     private final SqlSessionFactory sqlSessionFactory;
 
-    public CouponServiceImpl() throws IOException {
-        String config = "userDBconfig.xml";
-        InputStream inputStream = Resources.getResourceAsStream(config);
-        this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    @Autowired
+    public CouponServiceImpl(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
     }
+
 
     @Override
     public boolean addCoupon(Coupon coupon) {

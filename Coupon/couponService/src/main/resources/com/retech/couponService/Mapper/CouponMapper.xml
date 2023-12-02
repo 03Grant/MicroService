@@ -6,12 +6,12 @@
     <!--配置查询所有-->
     <!--id为方法名称-->
     <insert id="insertCoupon" parameterType="com.retech.couponService.Model.Coupon">
-        INSERT INTO coupons (couponid, couponname, ...)
+        INSERT INTO coupon (couponid, couponname, ...)
         VALUES (#{couponid}, #{couponname}, ...)
     </insert>
 
     <update id="updateCoupon" parameterType="com.retech.couponService.Model.Coupon">
-        UPDATE coupons
+        UPDATE coupon
         SET couponname = #{couponname}, commatch = #{commatch}, type = #{type},
             discount = #{discount}, limit = #{limit}, specialoffer = #{specialoffer},
             cumulation = #{cumulation}, timebegin = #{timebegin}, timeend = #{timeend},
@@ -20,26 +20,26 @@
     </update>
 
     <delete id="deleteCoupon" parameterType="java.lang.String">
-        DELETE FROM coupons WHERE couponid = #{couponid}
+        DELETE FROM coupon WHERE couponid = #{couponid}
     </delete>
 
     <select id="findActiveCoupons" resultType="com.retech.couponService.Model.Coupon">
-        SELECT * FROM coupons
-        WHERE timebegin <= NOW() AND timeend >= NOW()
+        SELECT * FROM coupon
+        WHERE timebegin &lt;= NOW() AND timeend &gt;= NOW()
     </select>
 
     <select id="findExpiredCoupons" resultType="com.retech.couponService.Model.Coupon">
-        SELECT * FROM coupons
-        WHERE timeend < NOW()
+        SELECT * FROM coupon
+        WHERE timeend &lt; NOW()
     </select>
 
     <select id="findNotYetActiveCoupons" resultType="com.retech.couponService.Model.Coupon">
-        SELECT * FROM coupons
-        WHERE timebegin > NOW()
+        SELECT * FROM coupon
+        WHERE timebegin &gt; NOW()
     </select>
 
     <select id="findCouponById" parameterType="java.lang.String" resultType="com.retech.couponService.Model.Coupon">
-        SELECT * FROM coupons WHERE couponid = #{couponid}
+        SELECT * FROM coupon WHERE couponid = #{couponid}
     </select>
 
 

@@ -1,9 +1,9 @@
 server:
-  port: 4177 # 设置为您所希望的端口
+  port: 4178 # ??????????
 
 spring:
   application:
-    name: userService # 您希望的服务名称
+    name: couponService # ????????
 
 eureka:
   client:
@@ -11,4 +11,5 @@ eureka:
       defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka
   instance:
     prefer-ip-address: true
+
 
