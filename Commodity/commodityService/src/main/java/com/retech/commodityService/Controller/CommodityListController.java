@@ -40,7 +40,7 @@ public class CommodityListController {
             @RequestParam(required = false) String memory) {
 
         CommodityDetails searchCriteria = new CommodityDetails();
-        searchCriteria.setCommodityName(commodityName);
+        searchCriteria.setCommodityname(commodityName);
         searchCriteria.setBrand(brand);
         searchCriteria.setPrice(price);
         searchCriteria.setCPU(CPU);

@@ -1,24 +1,24 @@
 package com.retech.commodityService.Model;
 
 public class Commodity{
-    public String commodityId;
-    public String commodityName;
+    public String commodityid;
+    public String commodityname;
     public String brand;
 
-    public String getCommodityId() {
-        return commodityId;
+    public String getCommodityid() {
+        return commodityid;
     }
 
-    public void setCommodityId(String commodityId) {
-        this.commodityId = commodityId;
+    public void setCommodityid(String commodityid) {
+        this.commodityid = commodityid;
     }
 
-    public String getCommodityName() {
-        return commodityName;
+    public String getCommodityname() {
+        return commodityname;
     }
 
-    public void setCommodityName(String commodityName) {
-        this.commodityName = commodityName;
+    public void setCommodityname(String commodityname) {
+        this.commodityname = commodityname;
     }
 
     public String getBrand() { return brand; }

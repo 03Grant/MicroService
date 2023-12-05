@@ -1,10 +1,10 @@
 package com.retech.commodityService.DTO;
 
 public class CommodityDetails {
-    private String commodityId;
-    private String commodityName;
+    private String commodityid;
+    private String commodityname;
     private String brand;
-    private String configurationId;
+    private String configurationid;
     private String CPU;
     private String GPU;
     private String disk;
@@ -17,11 +17,11 @@ public class CommodityDetails {
         // 默认构造函数
     }
 
-    public CommodityDetails(String commodityId, String commodityName, String brand, String configurationId, String CPU, String GPU, String disk, String memory, double price) {
-        this.commodityId = commodityId;
-        this.commodityName = commodityName;
+    public CommodityDetails(String commodityid, String commodityname, String brand, String configurationid, String CPU, String GPU, String disk, String memory, double price) {
+        this.commodityid = commodityid;
+        this.commodityname = commodityname;
         this.brand = brand;
-        this.configurationId = configurationId;
+        this.configurationid = configurationid;
         this.CPU = CPU;
         this.GPU = GPU;
         this.disk = disk;
@@ -29,20 +29,20 @@ public class CommodityDetails {
         this.price = price;
     }
 
-    public String getCommodityId() {
-        return commodityId;
+    public String getCommodityid() {
+        return commodityid;
     }
 
-    public void setCommodityId(String commodityId) {
-        this.commodityId = commodityId;
+    public void setCommodityid(String commodityid) {
+        this.commodityid = commodityid;
     }
 
-    public String getCommodityName() {
-        return commodityName;
+    public String getCommodityname() {
+        return commodityname;
     }
 
-    public void setCommodityName(String commodityName) {
-        this.commodityName = commodityName;
+    public void setCommodityname(String commodityname) {
+        this.commodityname = commodityname;
     }
 
     public String getBrand() {
@@ -53,12 +53,12 @@ public class CommodityDetails {
         this.brand = brand;
     }
 
-    public String getConfigurationId() {
-        return configurationId;
+    public String getConfigurationid() {
+        return configurationid;
     }
 
-    public void setConfigurationId(String configurationId) {
-        this.configurationId = configurationId;
+    public void setConfigurationid(String configurationid) {
+        this.configurationid = configurationid;
     }
 
     public String getCPU() {

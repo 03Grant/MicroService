@@ -19,7 +19,7 @@ public class CommodityInfoController {
         this.commodityService = commodityService;
     }
 
-    @GetMapping("/{commodityId}")
+    @GetMapping("/{commodityid}")
     public ResponseEntity<?> getCommodityDetails(@PathVariable String commodityId) {
         CommodityDetails commodityDetails = commodityService.getCommodityDetails(commodityId);
 

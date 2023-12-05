@@ -10,10 +10,10 @@ import java.util.List;
 public interface CommodityMapper {
     int insertCommodity(Commodity commodity);
     int updateCommodity(Commodity commodity);
-    int deleteCommodity(String commodityId);
+    int deleteCommodity(String commodityid);
 //    List<Commodity> selectAll();
     List<CommodityInfo> getAllCommodityInfo();
-    CommodityDetails getCommodityDetails(String commodityId);
+    CommodityDetails getCommodityDetails(String commodityid);
 
     List<CommodityInfo> searchCommodities(CommodityDetails searchCriteria);
 
@@ -22,6 +22,6 @@ public interface CommodityMapper {
 
 
 
-    List<Commodity> findCommodityByName(String commodityId);
-    double getPriceByCommodityId(String commodityId);
+    List<Commodity> findCommodityByname(String commodityid);
+    double getPriceByCommodityid(String commodityid);
 }
