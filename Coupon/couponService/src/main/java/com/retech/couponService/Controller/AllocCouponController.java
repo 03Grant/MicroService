@@ -21,7 +21,7 @@ public class AllocCouponController {
 
     @PostMapping("/allocate")
     public boolean allocateCouponToUser(@RequestBody AllocCoupon allocCoupon) {
-        // 目前一次领一张
+        // 目前一次限制领一张
         allocCoupon.setNum(1);
         // todo: 可以加一些检验的代码。
         String userServiceUrl = "http://USERSERVICE/usercoupon/add"; // 替换为实际的 URL
