@@ -48,7 +48,12 @@ public class InventoryController {
     }
 
     @PostMapping("/decrease")
-    public boolean decreaseInventory(@RequestBody Inventory inventory) {
-        return inventoryService.decreaseInventory(inventory);
+    public ResponseEntity<?> decreaseInventory(@RequestBody Inventory inventory) {
+        boolean isSuccess =  inventoryService.decreaseInventory(inventory);
+        if (isSuccess) {
+            return ResponseEntity.ok("Inventory decreased successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Failed to decrease inventory");
+        }
     }
 }
