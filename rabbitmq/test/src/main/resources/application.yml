@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: test-rabbitmq-producer
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtualHost: /
