@@ -5,6 +5,16 @@ public class Commodity{
     public String commodityname;
     public String brand;
 
+    public int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type= type;
+    }
+
     public String getCommodityid() {
         return commodityid;
     }

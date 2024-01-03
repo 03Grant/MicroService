@@ -3,6 +3,7 @@ package com.retech.commodityService.Service;
 import com.retech.commodityService.DTO.CommodityDetails;
 import com.retech.commodityService.Model.Commodity;
 import com.retech.commodityService.DTO.CommodityInfo;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface CommodityService {
 
     List<CommodityInfo> searchCommodities(CommodityDetails searchCriteria);
 
-
+    int getQuantityByCommodityId(String commodityId);
     // 根据商品ID获取商品信息
     Commodity getCommodityByid(String commodityid);
     double getPriceByCommodityid(String commodityid);

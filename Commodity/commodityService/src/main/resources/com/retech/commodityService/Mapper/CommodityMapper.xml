@@ -37,10 +37,15 @@
         conf.disk,
         conf.memory,
         p.price
+#         FROM
+#         commodity c
+#         LEFT JOIN configuration conf ON c.commodityid = conf.configurationid
+#         LEFT JOIN price p ON c.commodityid = p.commodityid
+#         WHERE
         FROM
-        commodity c
-        LEFT JOIN configuration conf ON c.commodityid = conf.commodityid
-        LEFT JOIN price p ON c.commodityid = p.commodityid
+            price p
+            LEFT JOIN commodity c ON c.commodityid = p.commodityid
+            LEFT JOIN configuration conf ON p.configurationid = conf.configurationid
         WHERE
         c.commodityid = #{commodityid}
     </select>
@@ -55,9 +60,9 @@
         MAX(p.price) AS maxPrice
         FROM
         commodity c
-        LEFT JOIN configuration conf ON c.commodityid = conf.commodityid
+        LEFT JOIN configuration conf ON c.commodityid = conf.configurationid
         LEFT JOIN price p ON c.commodityid = p.commodityid
-        WHERE
+        WHERE 1=1
         <!-- 根据用户提供的参数动态构建查询条件 -->
         <if test="commodityname != null and commodityname != ''">
             AND c.commodityname = #{commodityname}
@@ -65,12 +70,14 @@
         <if test="brand != null and brand != ''">
             AND c.brand = #{brand}
         </if>
-        <if test="price != 0.0">
+        <if test="price != null and price != 0.0">
             AND p.price = #{price}
         </if>
         <!-- 其他参数的条件类似，根据需要添加 -->
         GROUP BY c.commodityid, c.commodityname, c.brand
     </select>
+
+
 
     <resultMap id="CommodityInfoResultMap" type="com.retech.commodityService.DTO.CommodityInfo">
         <id property="commodityid" column="commodityid"/>
@@ -98,6 +105,8 @@
 
 
 
+
+
     <!-- 根据商品ID查询商品 -->
     <select id="findCommodityByid" resultType="com.retech.commodityService.Model.Commodity">
         SELECT * FROM commodity WHERE commodityid = #{commodityid}
@@ -111,16 +120,18 @@
 
     <!-- 插入商品 -->
     <insert id="insertCommodity">
-        INSERT INTO commodity (commodityid, commodityname, brand, price, stock)
-        VALUES (#{commodityid}, #{commodityname}, #{brand}, #{price}, #{stock})
+        INSERT INTO commodity (commodityid, commodityname, brand,type)
+        VALUES (#{commodityid}, #{commodityname}, #{brand},#{type})
     </insert>
 
     <!-- 更新商品信息 -->
     <update id="updateCommodity">
         UPDATE commodity
-        SET commodityname = #{commodityname}, brand = #{brand}, price = #{price}, stock = #{stock}
+        SET commodityname = #{commodityname}, brand = #{brand},type=#{type}
         WHERE commodityid = #{commodityid}
     </update>
+
+
 
     <!-- 删除商品 -->
     <delete id="deleteCommodity">

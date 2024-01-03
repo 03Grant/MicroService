@@ -2,6 +2,7 @@ package com.retech.commodityService.Controller;
 
 import com.retech.commodityService.DTO.CommodityDetails;
 import com.retech.commodityService.DTO.CommodityInfo;
+import com.retech.commodityService.Mapper.CommodityMapper;
 import com.retech.commodityService.Service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class CommodityListController {
     public ResponseEntity<List<CommodityInfo>> searchCommodities(
             @RequestParam(required = false) String commodityName,
             @RequestParam(required = false) String brand,
-            @RequestParam(required = false) Double price,
+//            @RequestParam(required = false) Double price,
             @RequestParam(required = false) String CPU,
             @RequestParam(required = false) String GPU,
             @RequestParam(required = false) String disk,
@@ -42,20 +43,20 @@ public class CommodityListController {
         CommodityDetails searchCriteria = new CommodityDetails();
         searchCriteria.setCommodityname(commodityName);
         searchCriteria.setBrand(brand);
-        searchCriteria.setPrice(price);
+//        searchCriteria.setPrice(price);
         searchCriteria.setCPU(CPU);
         searchCriteria.setGPU(GPU);
         searchCriteria.setDisk(disk);
         searchCriteria.setMemory(memory);
 
-        List<CommodityInfo> searchResults = commodityService.searchCommodities(searchCriteria);
+        List<CommodityInfo> searchCommodities = commodityService.searchCommodities(searchCriteria);
 
-        if (searchResults.isEmpty()) {
+        if (searchCommodities.isEmpty()) {
             // No matching commodities found
             return ResponseEntity.status(404).body(null);
         } else {
             // Return the list of matching commodities
-            return ResponseEntity.ok(searchResults);
+            return ResponseEntity.ok(searchCommodities);
         }
     }
 }

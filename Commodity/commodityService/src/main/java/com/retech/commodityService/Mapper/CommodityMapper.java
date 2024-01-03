@@ -8,6 +8,8 @@ import com.retech.commodityService.Model.Price;
 import java.util.List;
 
 public interface CommodityMapper {
+
+
     int insertCommodity(Commodity commodity);
     int updateCommodity(Commodity commodity);
     int deleteCommodity(String commodityid);
@@ -16,7 +18,6 @@ public interface CommodityMapper {
     CommodityDetails getCommodityDetails(String commodityid);
 
     List<CommodityInfo> searchCommodities(CommodityDetails searchCriteria);
-
 
 
 

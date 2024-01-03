@@ -11,13 +11,14 @@ public class CommodityDetails {
     private String memory;
     private double price;
 
+    private int quantity;
     // 构造函数、getter 和 setter 方法
 
     public CommodityDetails() {
         // 默认构造函数
     }
 
-    public CommodityDetails(String commodityid, String commodityname, String brand, String configurationid, String CPU, String GPU, String disk, String memory, double price) {
+    public CommodityDetails(String commodityid, String commodityname, String brand, String configurationid, String CPU, String GPU, String disk, String memory, double price,int quantity)  {
         this.commodityid = commodityid;
         this.commodityname = commodityname;
         this.brand = brand;
@@ -27,6 +28,7 @@ public class CommodityDetails {
         this.disk = disk;
         this.memory = memory;
         this.price = price;
+        this.quantity=quantity;
     }
 
     public String getCommodityid() {
@@ -99,6 +101,14 @@ public class CommodityDetails {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 
