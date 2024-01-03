@@ -23,7 +23,7 @@ public class CommodityInfoController {
     public ResponseEntity<?> getCommodityDetails(@PathVariable String commodityid) {
 
         // Specify the URL with the commodityid parameter
-        String url = "http://localhost:8080/inventory/query?commodityid=" + commodityid;
+        String url = "http://47.97.117.9:7999/InventoryService/inventory/query?commodityid=" + commodityid;
 
         // Use RestTemplate to make the HTTP request and retrieve the data
         RestTemplate restTemplate = new RestTemplate();
