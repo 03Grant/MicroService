@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.retech.orderservice.Mapper.OrderMapper">
+
+    <select id="getallOrders" resultType="com.retech.orderservice.Model.Order">
+        SELECT * FROM order
+    </select>
+
+    <!-- 创建订单 -->
+<!--    <insert id="createOrder" parameterType="com.retech.orderservice.Model.Order">-->
+<!--        &lt;!&ndash; Use of <selectKey> to retrieve generated key &ndash;&gt;-->
+<!--        <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.String">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+
+<!--        &lt;!&ndash; Insert into orderinfo &ndash;&gt;-->
+<!--        INSERT INTO orderinfo (userid, tot_amount, status, time)-->
+<!--        VALUES (#{userid}, #{tot_amount}, #{status}, #{time});-->
+
+<!--        &lt;!&ndash; Insert into ordergoods &ndash;&gt;-->
+<!--        INSERT INTO ordergoods (orderid, commodityid, commoditynum)-->
+<!--        VALUES (#{orderid}, #{commodityid}, #{commoditynum});-->
+
+<!--        &lt;!&ndash; Insert into orderoffer &ndash;&gt;-->
+<!--        INSERT INTO orderoffer (orderid, couponid, coupon_amount)-->
+<!--        VALUES (#{orderid}, #{couponid}, #{coupon_amount});-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash; 创建 orderinfo 记录 &ndash;&gt;-->
+<!--    <insert id="insertOrderInfo" parameterType="com.retech.orderservice.Model.orderinfo">-->
+<!--        INSERT INTO orderinfo (orderid, userid, total_amount, status, time)-->
+<!--        VALUES (#{orderid}, #{userid}, #{time}, #{status}, #{total_amount});-->
+<!--    </insert>-->
+
+    <insert id="insertOrderInfo" parameterType="com.retech.orderservice.Model.orderinfo">
+        INSERT INTO orderinfo (orderid, userid, total_amount, status, time)
+        VALUES (#{orderid}, #{userid}, #{total_amount}, #{status}, #{time});
+    </insert>
+
+
+    <!-- Create ordergoods -->
+    <insert id="insertOrderGoods" parameterType="com.retech.orderservice.Model.ordergoods">
+        INSERT INTO ordergoods (orderid, commodityid, commoditynum)
+        VALUES (#{orderid}, #{commodityid}, #{commoditynum});
+    </insert>
+
+    <!-- Create orderoffer -->
+    <insert id="insertOrderOffer" parameterType="com.retech.orderservice.Model.orderoffer">
+        INSERT INTO orderoffer (orderid, couponid, coupon_amount)
+        VALUES (#{orderid}, #{couponid}, #{coupon_amount});
+    </insert>
+
+    <!-- 查询订单 -->
+    <select id="getOrderById" resultType="com.retech.orderservice.Model.Order">
+        SELECT * FROM orderinfo WHERE order_id = #{orderid}
+    </select>
+
+    <!-- 更新订单 -->
+<!--    <update id="updateOrder" parameterType="com.retech.orderservice.Model.Order">-->
+<!--        UPDATE orderinfo-->
+<!--        SET status = #{status},-->
+<!--        WHERE order_id = #{order_id}-->
+<!--    </update>-->
+
+    <!-- 删除订单 -->
+    <delete id="deleteOrder" parameterType="String">
+        <!-- 删除 orderoffer 表中的数据 -->
+        DELETE FROM orderoffer WHERE orderid = #{order_id};
+
+        <!-- 删除 ordergoods 表中的数据 -->
+        DELETE FROM ordergoods WHERE orderid = #{order_id};
+
+        <!-- 删除 orderinfo 表中的数据 -->
+        DELETE FROM orderinfo WHERE orderid = #{order_id};
+    </delete>
+
+<!--    &lt;!&ndash; 支付订单 &ndash;&gt;-->
+<!--    <update id="payOrder" parameterType="com.retech.orderservice.Model.PaymentDetails">-->
+<!--        UPDATE orders-->
+<!--        SET status = '已支付'-->
+<!--        WHERE order_id = #{order_id}-->
+<!--    </update>-->
+
+    <!-- 更改订单状态 -->
+    <update id="updateOrder" parameterType="com.retech.orderservice.Model.orderinfo">
+        UPDATE orderinfo
+        SET status = #{status}
+        WHERE order_id = #{order_id}
+    </update>
+
+
+</mapper>
