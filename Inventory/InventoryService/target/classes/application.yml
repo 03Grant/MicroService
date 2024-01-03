@@ -1,6 +1,6 @@
 ################ ?????? ################
 server:
-  port: 8020
+  port: 7999
   servlet:
     # ????????
     context-path: /InventoryService
@@ -13,4 +13,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://43.142.91.204:8761/eureka
+      defaultZone: http://43.142.91.204:8761/eureka,http://43.142.91.204:8762/eureka
