@@ -1,2 +1,14 @@
+################ ?????? ################
 server:
-  port: 8081
+  port: 7999
+  servlet:
+    context-path: /CommodityService
+spring:
+  application:
+    name: CommodityService
+
+################ Eureka?? ################
+eureka:
+  client:
+    service-url:
+      defaultZone: http://43.142.91.204:8761/eureka, http://43.142.91.204:8762/eureka

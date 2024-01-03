@@ -11,4 +11,4 @@ eureka:
     #fetch-registry: false
     service-url:
       # 两个EUreka Server 端口为8761 8762
-      defaultZone: http://eureka1:8761/eureka
+      defaultZone: http://43.142.91.204:8761/eureka
