@@ -1,9 +1,9 @@
 package com.retech.orderservice.Model;
 
 public class orderoffer {
-    private String orderId;
-    private String couponId;
-    private double couponAmount;
+    private String orderid;
+    private String couponid;
+    private double coupon_amount;
 
     // Constructors
 
@@ -11,36 +11,36 @@ public class orderoffer {
         // Default constructor
     }
 
-    public orderoffer(String orderId, String couponId, double couponAmount) {
-        this.orderId = orderId;
-        this.couponId = couponId;
-        this.couponAmount = couponAmount;
+    public orderoffer(String orderid, String couponid, double coupon_amount) {
+        this.orderid = orderid;
+        this.couponid = couponid;
+        this.coupon_amount = coupon_amount;
     }
 
     // Getters and Setters
 
-    public String getOrderId() {
-        return orderId;
+    public String getOrderid() {
+        return orderid;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setOrderId(String orderid) {
+        this.orderid = orderid;
     }
 
     public String getCouponId() {
-        return couponId;
+        return couponid;
     }
 
-    public void setCouponId(String couponId) {
-        this.couponId = couponId;
+    public void setCouponId(String couponid) {
+        this.couponid = couponid;
     }
 
-    public double getCouponAmount() {
-        return couponAmount;
+    public double getcoupon_amount() {
+        return coupon_amount;
     }
 
-    public void setCouponAmount(double couponAmount) {
-        this.couponAmount = couponAmount;
+    public void setcoupon_amount(double coupon_amount) {
+        this.coupon_amount = coupon_amount;
     }
 
     // toString() method for debugging or logging purposes
@@ -48,9 +48,9 @@ public class orderoffer {
     @Override
     public String toString() {
         return "OrderOffer{" +
-                "orderId='" + orderId + '\'' +
-                ", couponId='" + couponId + '\'' +
-                ", couponAmount=" + couponAmount +
+                "orderid='" + orderid + '\'' +
+                ", couponid='" + couponid + '\'' +
+                ", coupon_amount=" + coupon_amount +
                 '}';
     }
 }

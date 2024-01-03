@@ -23,11 +23,11 @@ public class orderinfo {
 
     // Getters and Setters
 
-    public String getOrderid() {
+    public String getorderid() {
         return orderid;
     }
 
-    public void setOrderid(String orderid) {
+    public void setorderid(String orderid) {
         this.orderid = orderid;
     }
 

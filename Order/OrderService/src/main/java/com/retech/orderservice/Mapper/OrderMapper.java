@@ -17,19 +17,19 @@ public interface OrderMapper {
     int createOrder(Order order);
 
     // 查询订单
-    Order getOrderById(String orderId);
+    orderinfo getOrderById(String orderId);
 
     // 更新订单
-    int updateOrder(Order order);
+    int updateOrder(String orderid,String status,Date time);
 
     // 删除订单
     int deleteOrder(String orderId);
 
-    // 更改订单状态
-    int changeOrderStatus(Order orderStatusUpdate);
+//    // 更改订单状态
+//    int changeOrderStatus(Order orderStatusUpdate);
 
     // 获取所有订单
-    List<Order> getallOrders();
+    List<orderinfo> getallOrders();
 
     int insertOrderInfo(@Param("orderid") String orderid,
                         @Param("userid") String userid,
@@ -41,4 +41,10 @@ public interface OrderMapper {
     int insertOrderGoods(ordergoods orderGoods);
 
     int insertOrderOffer(orderoffer orderOffer);
+
+    int deleteOrderInfo(String orderid);
+
+    int deleteOrderGoods(String orderid);
+
+    int deleteOrderOffer(String orderid);
 }

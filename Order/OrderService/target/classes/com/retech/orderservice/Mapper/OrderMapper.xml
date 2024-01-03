@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.retech.orderservice.Mapper.OrderMapper">
 
-    <select id="getallOrders" resultType="com.retech.orderservice.Model.Order">
-        SELECT * FROM order
+    <select id="getallOrders" resultType="com.retech.orderservice.Model.orderinfo">
+        SELECT * FROM orderinfo
     </select>
 
     <!-- 创建订单 -->
@@ -53,41 +53,45 @@
     </insert>
 
     <!-- 查询订单 -->
-    <select id="getOrderById" resultType="com.retech.orderservice.Model.Order">
-        SELECT * FROM orderinfo WHERE order_id = #{orderid}
+    <select id="getOrderById" resultType="com.retech.orderservice.Model.orderinfo">
+        SELECT * FROM orderinfo WHERE orderid = #{orderid}
     </select>
 
     <!-- 更新订单 -->
 <!--    <update id="updateOrder" parameterType="com.retech.orderservice.Model.Order">-->
 <!--        UPDATE orderinfo-->
 <!--        SET status = #{status},-->
-<!--        WHERE order_id = #{order_id}-->
+<!--        WHERE orderid = #{orderid}-->
 <!--    </update>-->
 
-    <!-- 删除订单 -->
-    <delete id="deleteOrder" parameterType="String">
-        <!-- 删除 orderoffer 表中的数据 -->
-        DELETE FROM orderoffer WHERE orderid = #{order_id};
 
-        <!-- 删除 ordergoods 表中的数据 -->
-        DELETE FROM ordergoods WHERE orderid = #{order_id};
+    <!-- 删除 orderinfo 表中的数据 -->
+    <delete id="deleteOrderInfo" parameterType="String">
+        DELETE FROM orderinfo WHERE orderid = #{orderid};
+    </delete>
 
-        <!-- 删除 orderinfo 表中的数据 -->
-        DELETE FROM orderinfo WHERE orderid = #{order_id};
+    <!-- 删除 ordergoods 表中的数据 -->
+    <delete id="deleteOrderGoods" parameterType="String">
+        DELETE FROM ordergoods WHERE orderid = #{orderid};
+    </delete>
+
+    <!-- 删除 orderoffer 表中的数据 -->
+    <delete id="deleteOrderOffer" parameterType="String">
+        DELETE FROM orderoffer WHERE orderid = #{orderid};
     </delete>
 
 <!--    &lt;!&ndash; 支付订单 &ndash;&gt;-->
 <!--    <update id="payOrder" parameterType="com.retech.orderservice.Model.PaymentDetails">-->
 <!--        UPDATE orders-->
 <!--        SET status = '已支付'-->
-<!--        WHERE order_id = #{order_id}-->
+<!--        WHERE orderid = #{orderid}-->
 <!--    </update>-->
 
     <!-- 更改订单状态 -->
     <update id="updateOrder" parameterType="com.retech.orderservice.Model.orderinfo">
         UPDATE orderinfo
-        SET status = #{status}
-        WHERE order_id = #{order_id}
+        SET status = #{status}, time = #{time}
+        WHERE orderid = #{orderid};
     </update>
 
 

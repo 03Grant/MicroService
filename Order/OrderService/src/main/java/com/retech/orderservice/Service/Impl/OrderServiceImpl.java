@@ -31,37 +31,13 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 
-//    @Override
-//    public boolean createOrder(Order order) {
-//        try (SqlSession session = sqlSessionFactory.openSession()) {
-//
-//            OrderMapper orderMapper = session.getMapper(OrderMapper.class);
-//            int result = orderMapper.createOrder(order);
-//            if (result > 0) {
-//                // 订单成功创建，可以执行其他操作，例如更新库存等
-//                // 提交事务
-//                session.commit();
-//                return true;
-//            } else {
-//                log.error("Failed to create order. Order details: {}", order);
-//
-////                // 抛出自定义异常
-////                throw new OrderCreationException("Failed to create order");
-//                // 回滚事务
-//                session.rollback();
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
 
     @Override
-    public Order getOrderById(String orderId) {
+    public orderinfo getOrderById(String orderId) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
 
-            Order order = orderMapper.getOrderById(orderId);
+            orderinfo order = orderMapper.getOrderById(orderId);
 
             if (order != null) {
                 // 订单成功检索，可以执行其他操作，例如日志记录
@@ -80,53 +56,111 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
     }
+//    @Override
+//    public boolean updateOrder(Order order) {
+//        try (SqlSession session = sqlSessionFactory.openSession()) {
+//            OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+//            int result = orderMapper.updateOrder(order);
+//            session.commit();
+//            return result > 0;
+//            // Additional business logic if needed
+//        } catch (Exception e) {
+//            // Handle exception, log error, and perform additional error handling if needed
+//            log.error("Exception occurred while updating order: {}", order, e);
+//            return false;
+//        }
+//    }
+
     @Override
-    public boolean updateOrder(Order order) {
+    public String updateOrderStatus(String orderId, String newStatus,Timestamp time) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
-            int result = orderMapper.updateOrder(order);
+
+            // 根据订单ID查询订单
+                // 执行更新操作
+                int result = orderMapper.updateOrder(orderId,newStatus,time);
+                session.commit();
+
+                if (result > 0) {
+                    // 更新成功，返回新状态
+                    return newStatus;
+                } else {
+                    // 更新失败
+                    log.error("Failed to update order status. Order ID: {}", orderId);
+                }
+            }
+        catch (Exception e) {
+            // 处理异常，记录错误日志等
+            log.error("Exception occurred while updating order status. Order ID: {}", orderId, e);
+        }
+
+        // 如果更新失败或发生异常，返回空字符串或其他适当的值
+        return "更新失败";
+    }
+
+
+    @Override
+    public boolean deleteOrderInfo(String orderId) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+            int result = orderMapper.deleteOrderInfo(orderId);
             session.commit();
             return result > 0;
             // Additional business logic if needed
         } catch (Exception e) {
             // Handle exception, log error, and perform additional error handling if needed
-            log.error("Exception occurred while updating order: {}", order, e);
+            log.error("Exception occurred while deleting order info with orderId: {}", orderId, e);
             return false;
         }
     }
 
     @Override
-    public boolean deleteOrder(String orderId) {
+    public boolean deleteOrderGoods(String orderId) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
-            int result = orderMapper.deleteOrder(orderId);
+            int result = orderMapper.deleteOrderGoods(orderId);
             session.commit();
             return result > 0;
             // Additional business logic if needed
         } catch (Exception e) {
             // Handle exception, log error, and perform additional error handling if needed
-            log.error("Exception occurred while deleting order with orderId: {}", orderId, e);
+            log.error("Exception occurred while deleting order goods with orderId: {}", orderId, e);
             return false;
         }
     }
 
     @Override
-    public boolean changeOrderStatus(Order orderStatusUpdate) {
+    public boolean deleteOrderOffer(String orderId) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
-            int result = orderMapper.changeOrderStatus(orderStatusUpdate);
-            // Additional business logic if needed
+            orderMapper.deleteOrderOffer(orderId);
             session.commit();
-            return result > 0;
+            return true;
+            // Additional business logic if needed
         } catch (Exception e) {
             // Handle exception, log error, and perform additional error handling if needed
-            log.error("Exception occurred while changing order status: {}", orderStatusUpdate, e);
+            log.error("Exception occurred while deleting order offer with orderId: {}", orderId, e);
             return false;
         }
     }
 
+//    @Override
+//    public boolean changeOrderStatus(orderinfo orderStatusUpdate) {
+//        try (SqlSession session = sqlSessionFactory.openSession()) {
+//            OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+//            int result = orderMapper.changeOrderStatus(orderStatusUpdate);
+//            // Additional business logic if needed
+//            session.commit();
+//            return result > 0;
+//        } catch (Exception e) {
+//            // Handle exception, log error, and perform additional error handling if needed
+//            log.error("Exception occurred while changing order status: {}", orderStatusUpdate, e);
+//            return false;
+//        }
+//    }
+
     @Override
-    public List<Order> getallOrders() {
+    public List<orderinfo> getallOrders() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
 
@@ -143,21 +177,11 @@ public class OrderServiceImpl implements OrderService {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             OrderMapper orderMapper = session.getMapper(OrderMapper.class);
             // 提取orderInfo的值
-            String orderid = orderInfo.getOrderid();
+            String orderid = orderInfo.getorderid();
             String userid = orderInfo.getUserid();
             double total_amount = orderInfo.getTotal_amount();
             String status = orderInfo.getStatus();
             Date time = orderInfo.getTime();
-
-//            // 将Timestamp转换为LocalDateTime
-//            LocalDateTime localDateTime = time.toLocalDateTime();
-//
-//            // 使用DateTimeFormatter格式化日期
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//            String formattedTime = localDateTime.format(formatter);
-
-            // 调用insertOrderInfo函数并传递提取的值
-            System.out.println("orderid: " + orderid + ", userid: " + userid + ", total_amount: " + total_amount + ", status: " + status + ", time: " + time);
 
             int result = orderMapper.insertOrderInfo(orderid, userid, total_amount, status, time);
             System.out.println("arrive");

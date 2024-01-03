@@ -1,7 +1,6 @@
 package com.retech.orderservice.Controller;
 
-
-import com.retech.orderservice.Model.Order;
+import com.retech.orderservice.Model.orderinfo;
 import com.retech.orderservice.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,8 @@ public class OrderListController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Order>> getallOrders() {
-        List<Order> allOrders = orderservice.getallOrders();
+    public ResponseEntity<List<orderinfo>> getallOrders() {
+        List<orderinfo> allOrders = orderservice.getallOrders();
 
         if (allOrders.isEmpty()) {
             // No orders found

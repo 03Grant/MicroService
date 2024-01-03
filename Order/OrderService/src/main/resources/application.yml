@@ -1,1 +1,16 @@
+################ ?????? ################
+server:
+  port: 7999
+  servlet:
+    # ????????
+    context-path: /OrderService
+spring:
+  application:
+    # ???Eureka????
+    name: OrderService
 
+################ Eureka?? ################
+eureka:
+  client:
+    service-url:
+      defaultZone: http://43.142.91.204:8761/eureka,http://43.142.91.204:8762/eureka
