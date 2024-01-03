@@ -7,7 +7,9 @@ import com.retech.InventoryService.Service.InventoryService;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 //import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +26,7 @@ public class InventoryServiceImpl implements InventoryService {
     public boolean addInventory(Inventory inventory) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             if(inventory.getQuantity() <=0){
-                return false;
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Inventory not found");
             }
             InventoryMapper mapper = session.getMapper(InventoryMapper.class);
             int affectedRows = mapper.insertInventory(inventory);
@@ -37,16 +39,16 @@ public class InventoryServiceImpl implements InventoryService {
    // @Transactional
     public boolean updateInventory(Inventory inventory) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            if (inventory.getQuantity() <= 0) {
-                return false;
-            }
             InventoryMapper mapper = session.getMapper(InventoryMapper.class);
 
             // 获取现有库存信息
-            Inventory existingInventory = mapper.getInventoryByCommodityAndConfiguration(inventory.getCommodityid(), inventory.getConfigurationid(), inventory.getWarehouse());
+            Inventory existingInventory = mapper.getInventoryByCommodityAndConfiguration(inventory.getCommodityid(), inventory.getCommodityname(), inventory.getWarehouse());
 
             // 如果找不到库存信息，创建一个新的库存记录
             if (existingInventory == null) {
+                if(inventory.getQuantity() <=0){
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Inventory not found");
+                }
                 int affectedRows = mapper.insertInventory(inventory);
                 session.commit();
                 return affectedRows > 0;

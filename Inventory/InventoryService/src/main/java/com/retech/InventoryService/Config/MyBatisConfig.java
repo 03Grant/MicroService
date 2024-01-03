@@ -13,7 +13,7 @@ public class MyBatisConfig {
 
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
-        String resource = "inventoryDBconfig.xml"; // 替换为您的配置文件名
+        String resource = "InventoryDBconfig.xml"; // 替换为您的配置文件名
         InputStream inputStream = Resources.getResourceAsStream(resource);
         return new SqlSessionFactoryBuilder().build(inputStream);
     }

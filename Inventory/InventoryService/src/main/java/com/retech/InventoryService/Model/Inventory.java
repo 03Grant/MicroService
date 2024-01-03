@@ -2,7 +2,7 @@ package com.retech.InventoryService.Model;
 
 public class Inventory {
     private String commodityid;
-    private String configurationid;
+    private String commodityname;
     private String warehouse;
     private int quantity;
 
@@ -15,12 +15,12 @@ public class Inventory {
         this.commodityid = commodityid;
     }
 
-    public String getConfigurationid() {
-        return configurationid;
+    public String getCommodityname() {
+        return commodityname;
     }
 
-    public void setConfigurationid(String configurationid) {
-        this.configurationid = configurationid;
+    public void setcommodityname(String commodityname) {
+        this.commodityname = commodityname;
     }
 
     public String getWarehouse() {
